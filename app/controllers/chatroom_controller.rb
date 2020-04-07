@@ -1,5 +1,5 @@
 class ChatroomController < ApplicationController
   def index
-    @messages = Message.all if logged_in?
+    @messages = Message.all
   end
 end
