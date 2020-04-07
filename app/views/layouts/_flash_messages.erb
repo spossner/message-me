@@ -1,0 +1,15 @@
+<% flash.each do |name, msg| %>
+  <div class="ui <%= name %> message">
+    <i class="close icon"></i>
+    <% if msg.is_a?(Array) %>
+      <div class="header">
+        <%= msg[0] %>
+      </div>
+      <p><%= msg[1] %></p>
+    <% else %>
+      <div class="header">
+        <%= msg %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

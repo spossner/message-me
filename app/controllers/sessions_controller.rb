@@ -4,9 +4,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:user_id] = 1
-    flash[:success] = "Successfully logged in"
-    redirect_to root_path
+    # user = User.find_by(username: params[:session][:username])
+    user = User.where("lower(username) = ?", params[:session][:username].downcase).first
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      flash[:success] = "Successfully logged in"
+      redirect_to root_path
+    else
+        flash.now[:error] = ["Login credentials are wrong", "Please check your login data"]
+      render :new
+    end
   end
 
   def destroy
@@ -14,4 +21,7 @@ class SessionsController < ApplicationController
     flash[:success] = "Successfully logged out"
     redirect_to root_path
   end
+
+
+
 end
