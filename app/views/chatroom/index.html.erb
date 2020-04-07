@@ -7,36 +7,19 @@
   <div class="eight wide column">
     <div class="ui fluid raised card chatbox">
       <div class="content">
+      <% if @messages %>
         <div class="ui feed">
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <em>Elliot Fu</em>: Test message
+          <% @messages.each do |m| %>
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                  <em><%= m.user.username %></em>: <%= m.body %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <em>Stevie Feliciano</em>: Test message
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <em>Helen Troy</em>: Test message
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="content">
-              <div class="summary">
-                <em>Christian Rocha</em>: Test message
-              </div>
-            </div>
-          </div>
+          <% end %>
         </div>
+      <% end %>
       </div><!--content-->
       <div class="extra content">
         <form class="ui reply form">
@@ -46,7 +29,6 @@
               <i class="bordered inverted orange edit icon"></i>
             </div>
           </div>
-
         </form>
       </div>
     </div>
