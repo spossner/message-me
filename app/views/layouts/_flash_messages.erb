@@ -3,12 +3,12 @@
     <i class="close icon"></i>
     <% if msg.is_a?(Array) %>
       <div class="header">
-        <%= msg[0] %>
+        <%= msg[0].html_safe %>
       </div>
-      <p><%= msg[1] %></p>
+      <p><%= msg[1].html_safe %></p>
     <% else %>
       <div class="header">
-        <%= msg %>
+        <%= msg.html_safe %>
       </div>
     <% end %>
   </div>

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def require_user
     if !logged_in?
       flash[:error] = ["Unauthorized request", "You must be logged in to perform the requested action"]
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 end

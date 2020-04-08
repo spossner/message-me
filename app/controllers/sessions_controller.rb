@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_in_redirect, only: [:new, :create]
+
   def new
 
   end
@@ -19,9 +21,14 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     flash[:success] = "Successfully logged out"
-    redirect_to root_path
+    redirect_to login_path
   end
 
-
-
+  private
+  def logged_in_redirect
+    if logged_in?
+      flash[:error] = "You are already logged in. Not #{@current_user.username}? #{view_context.link_to'Switch to your account.', logout_path, method: :delete}"
+      redirect_to root_path
+    end
+  end
 end
