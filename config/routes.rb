@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # chatroom
   root 'chatroom#index'
+  mount ActionCable.server, at: '/cable'
 
   # sessions
   get 'login', to: 'sessions#new'

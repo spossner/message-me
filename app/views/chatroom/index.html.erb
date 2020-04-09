@@ -4,26 +4,26 @@
 </h4>
 
 <div class="ui centered column grid">
-  <div class="eight wide column">
+  <div class="eight wide column" style="flex: 1;">
     <div class="ui fluid raised card chatbox">
-      <div class="content">
-        <div class="ui feed">
+      <div class="content" id="messages">
+        <div class="ui feed" id="message-container">
           <%= render @messages %>
         </div>
       </div><!--content-->
       <div class="extra content">
-        <%= form_with(model: @message, url: message_path, local:true, class: "ui reply form") do |f| %>
+        <%= form_with(model: @message, url: message_path, class: "ui reply form", id: "chat-form") do |f| %>
           <div class="field">
             <div class="ui icon input">
-              <%= f.text_field :body, placeholer: "Chat message..." %>
-              <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
+              <%= f.text_field :body, id: "chat-message" , placeholer: "Chat message..." %>
+              <%= f.button '<i class="bordered inverted orange edit icon" id="chat-button"></i>'.html_safe %>
             </div>
           </div>
         <% end %>
       </div>
     </div>
   </div><!-- twelve wide column -->
-  <div class="four wide column">
+  <div class="four wide column" style="flex: 0 0 270px;">
     <div class="ui fluid raised card chatbox">
       <div class="content">
         <div class="ui inverted vertical menu">

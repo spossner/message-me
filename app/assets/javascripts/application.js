@@ -17,6 +17,13 @@
 //= require semantic-ui
 //= require_tree .
 
+scrollMessages = function() {
+    var m = $('#messages');
+    if (m.length > 0) {
+        m.scrollTop(m[0].scrollHeight);
+    }
+}
+
 $(document).on('turbolinks:load', function() {
     $('.ui.dropdown').dropdown();
 
@@ -25,4 +32,10 @@ $(document).on('turbolinks:load', function() {
             .closest('.message')
             .transition('fade');
     });
+
+    $('#chat-form').on('ajax:send', function() {
+       $('#chat-message').val("").focus();
+    });
+
+    scrollMessages();
 })
